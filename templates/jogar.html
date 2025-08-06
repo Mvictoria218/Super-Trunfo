@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/jogar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.21.2/dist/sweetalert2.min.css">
+    <link rel="shortcut icon" href="/static/assets/globo (1).png" type="image/x-icon">
+    <title>Jogar</title>
+</head>
+<body>
+
+    <a class="casa" href="/">
+      <img src="/static/assets/mojodojocasahouse.png" alt="">
+    </a>
+    <img class="fundo" src="/static/assets/super trunfo (3).png" alt="">
+
+    <img class="jogador1" src="/static/assets/jogador1.png" alt="">
+   
+    <img class="jogador2" src="/static/assets/jogador2.png" alt="">
+    <img class="vs" src="/static/assets/vs.png" alt="">
+
+    <button class="sortear" onclick="sortearCarta()" id="btnSortear">SORTEAR</button>
+    <h2>Escolha o seu atributo!</h2>
+            <div class="wrapper">
+              <div class="placar" id="placar"></div>
+              <div id="opcoes" id="opcoes"></div>
+                <div id="cartas">
+                  <div class="carta-container" id="carta-jogador">
+                    <div class="carta" id="carta-flip">
+                      <div class="face frente"></div>
+                      <div class="face verso"></div>
+                    </div>
+                  </div>
+
+                  <div class="carta-container-maquina" id="carta-maquina">
+                    <div class="carta" id="carta-maquina-flip">
+                      <div class="face frente"></div>
+                      <div class="face verso"></div>
+                    </div>
+                  </div>
+
+                </div>
+                <button class="jogar" type="button" id="btnJogar" onclick="jogar()"
+                    disabled="false">JOGAR</button>
+                    <div id="resultado"></div>
+            </div>
+            <button class="proxima" type="button" id="btnProximaRodada" onclick="proximaRodada()" disabled="true">PRÓXIMA RODADA</button></button>
+        </form>
+    </div>
+
+<script>
+  let cartaUm = {
+    nome: "Fada do Dente",
+    imagem:"/static/assets/fada.png",
+    atributos: {
+      Ataque: 70,
+      Defesa: 80,
+      Magia: 90
+      }
+    }
+      
+  let cartaDois = {
+    nome: "Coelhão",
+    imagem:"/static/assets/coelho.png",
+    atributos: {
+      Ataque: 80,
+      Defesa: 75,
+      Magia: 85
+      }   
+    }
+      
+  let cartaTres = { 
+    nome: "Breu",
+    imagem:"/static/assets/breu.png",
+    atributos: {
+      Ataque: 95,
+      Defesa: 80,
+      Magia: 90
+      }   
+    }
+      
+  let cartaQuatro = {  
+    nome: "Jack Frost",
+    imagem:"/static/assets/jack.png",
+    atributos: {
+      Ataque: 85,
+      Defesa: 70,
+      Magia: 90
+      }
+    }
+      
+  let cartaCinco =  {
+    nome: "Papai Noel",
+    imagem:"/static/assets/papainoel.png",
+    atributos: {
+      Ataque: 95,
+      Defesa: 85,
+      Magia: 80
+      }
+    }
+      
+  let cartaSeis = {
+    nome: "Sandman",
+      imagem:"/static/assets/sandman.png",
+      atributos: {
+        Ataque: 80,
+        Defesa: 85,
+        Magia: 95
+        }
+      }
+   
+  let cartaMaquina
+  let cartaJogador      
+  let cartas = [cartaUm, cartaDois, cartaTres, cartaQuatro, cartaCinco, cartaSeis]
+  
+  let pontosJogador = 0
+  let pontosMaquina = 0
+
+
+  function atualizaPlacar(){
+    let divPlacar = document.getElementById("placar")
+    let html = pontosJogador + " x " + pontosMaquina
+
+    divPlacar.innerHTML = html
+  }
+
+  atualizaPlacar()
+
+  function sortearCarta(){
+    let numeroCartaMaquina = parseInt(Math.random() * cartas.length)
+    cartaMaquina = cartas[numeroCartaMaquina]
+
+    let numeroCartaJogador = parseInt(Math.random() * cartas.length)
+    // Garantir que a carta do jogador e da máquina sejam diferentes    
+    while (numeroCartaJogador == numeroCartaMaquina){
+      numeroCartaJogador = parseInt(Math.random() * cartas.length)
+    }
+    cartaJogador = cartas[numeroCartaJogador]
+    console.log(cartaJogador)
+
+    document.getElementById("btnSortear").disabled = true
+    document.getElementById("btnJogar").disabled = false
+
+
+    exibeCartaJogador()
+    exibirOpcoes()
+    }; 
+
+  function exibeCartaJogador() {
+  const cartaFlip = document.getElementById("carta-flip");
+  const frente = cartaFlip.querySelector(".frente");
+
+  // Define a imagem da frente (a carta sorteada)
+  frente.style.backgroundImage = `url(${cartaJogador.imagem})`;
+
+  // Aplica a rotação 3D
+  cartaFlip.classList.remove("virar"); // reset (caso jogue novamente)
+  void cartaFlip.offsetWidth; // força reflow
+  cartaFlip.classList.add("virar");
+}
+  
+
+  function exibirOpcoes(){
+    let opcoes = document.getElementById("opcoes")
+    let opcoesTexto = ""
+    for (let atributo in cartaJogador.atributos){
+      opcoesTexto +=  `<label><input type="radio" name="atributo" value="${atributo}">${atributo}</label>`
+    }
+    opcoes.innerHTML = opcoesTexto
+  }
+
+  function obtemAtributoSelecionado(){
+    let radioAtributo = document.getElementsByName('atributo')
+    for (let i = 0;i < radioAtributo.length; i++){
+      if (radioAtributo[i].checked) {                                           
+        return radioAtributo[i].value
+      }
+    }
+  }
+
+  function jogar(){
+    let divResultado = document.getElementById("resultado")
+    let atributoSelecionado = obtemAtributoSelecionado()
+
+    if (cartaJogador.atributos[atributoSelecionado] > cartaMaquina.atributos[atributoSelecionado]){
+      htmlResultado = '<p class="resultado-final">Você venceu!</p>'
+      pontosJogador++
+    } else if (cartaJogador.atributos[atributoSelecionado] < cartaMaquina.atributos[atributoSelecionado]) {
+      htmlResultado = '<p class="resultado-final">Você perdeu!</p>'
+      pontosMaquina++
+    } else {
+      htmlResultado = '<p class="resultado-final">Empate!</p>'
+    }
+    
+    divResultado.innerHTML = htmlResultado
+
+    atualizaPlacar()
+
+    document.getElementById("btnJogar").disabled = true
+    document.getElementById("btnProximaRodada").disabled = false
+
+
+
+    exibeCartaMaquina()
+  }
+
+  function exibeCartaMaquina() {
+  const cartaFlip = document.getElementById("carta-maquina-flip");
+  const frente = cartaFlip.querySelector(".frente");
+
+  frente.style.backgroundImage = `url(${cartaMaquina.imagem})`;
+
+  cartaFlip.classList.remove("virar"); // reset
+  void cartaFlip.offsetWidth;
+  cartaFlip.classList.add("virar");
+}
+
+  function proximaRodada() {
+  // Resetar cartas
+  const cartaJogador = document.getElementById("carta-flip");
+  const cartaMaquina = document.getElementById("carta-maquina-flip");
+
+  cartaJogador.classList.remove("virar");
+  cartaMaquina.classList.remove("virar");
+
+  // Resetar frente das cartas
+  cartaJogador.querySelector(".frente").style.backgroundImage = "";
+  cartaMaquina.querySelector(".frente").style.backgroundImage = "";
+
+  // Limpar opções de atributos
+  document.getElementById("opcoes").innerHTML = "";
+
+  // Limpar resultado
+  document.getElementById("resultado").innerHTML = "";
+
+  // Resetar botões
+  document.getElementById("btnSortear").disabled = false;
+  document.getElementById("btnJogar").disabled = true;
+  document.getElementById("btnProximaRodada").disabled = true;
+}
+
+      
+</script>
+
+</body>
+
+</html>

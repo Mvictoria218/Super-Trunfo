@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A carta dos guardiões</title>
+    <link rel="stylesheet" href="/static/styles/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="shortcut icon" href="/static/assets/globo (1).png" type="image/x-icon">
+</head>
+<body>
+    
+    <img class="bg" src="/static/assets/bg.png" alt="">
+    <img src="/static/assets/personagens.png" alt="">
+
+    <h1 class="a">A ORIGEM</h1>
+    <h1 class="b">DOS GUARDIÕES</h1>
+
+    <div class="button">
+
+        <img id="globo" class="globo" src="/static/assets/globo (1).png">
+        <img width="5%" id="globo2" class="globo2" src="/static/assets/globo (1).png">
+        <img id="globo3" class="globo3" src="/static/assets/globo (1).png">
+        
+        <a href="/jogar" class="play" id="jogar" >PLAY</a>
+
+        <a href="/comojogar" class="como" id="como" >COMO JOGAR</a>
+        <a href="/cartas" class="cartas" id="cartas">CARTAS</a>
+
+    </div>
+<script>
+    const play = document.getElementById("jogar")
+    const como = document.getElementById("como")
+    const cartas = document.getElementById("cartas")
+    const globo = document.getElementById("globo")
+    const globo2 = document.getElementById("globo2")    
+    const globo3 = document.getElementById("globo3")
+
+    play.addEventListener("mouseover", () => {
+        globo.style.opacity = "1"
+    })
+
+    play.addEventListener("mouseout", () => {
+        globo.style.opacity = "0"
+    })
+
+    como.addEventListener("mouseover", () => {
+        globo2.style.opacity = "1"
+        texto.style.backgroundSize = "100% 100%"
+    })
+
+    como.addEventListener("mouseout", () => {
+        globo2.style.opacity = "0"
+        texto.style.backgroundSize = "0% 0%"
+    }) 
+
+    cartas.addEventListener("mouseover", () => {    
+        globo3.style.opacity = "1"
+        texto.style.backgroundSize = "100% 100%"
+    })
+
+    cartas.addEventListener("mouseout", () => { 
+        globo3.style.opacity = "0"
+        texto.style.backgroundSize = "0% 0%"
+    })
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+</body>
+</html>

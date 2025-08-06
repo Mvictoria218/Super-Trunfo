@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas</title>
+    <link rel="shortcut icon" href="/static/assets/globo (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/styles/cartas.css">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+</head>
+<body id="fundo">
+    
+    <main>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="project-img">
+                        <img src="../static/assets/fada.png" alt="image1">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="project-img">
+                        <img src="../static/assets/coelho.png" alt="image2">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="project-img">
+                        <img src="../static/assets/jack.png" alt="image3">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="project-img">
+                        <img src="../static/assets/papainoel.png" alt="image4">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="project-img">
+                        <img src="../static/assets/breu.png" alt="image5">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="project-img">
+                        <img src="../static/assets/sandman.png" alt="image6">
+                    </div>
+                </div>
+            </div>
+
+            <div id="next" class="swiper-button-next"></div>
+            <div id="prev" class="swiper-button-prev"></div>
+        </div>
+
+        <a href="/jogar" class="jogar" id="" >JOGAR    |</a> 
+        <a href="/" class="inicio" id="" >INÍCIO</a>
+
+
+    </main>
+
+    <!-- <a class="jogar" href="/jogar">JOGAR</a> -->
+     
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+    const swiper = new Swiper(".swiper", {
+        cssMode: false,
+        loop: true,
+        slidesPerView: 0,
+        centeredSlides: true,
+        spaceBeetween: 30,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+
+            keyboard: true,
+    })
+
+    const fundos = [
+        "url(../static/assets/bg-fada.png)",
+        "url(../static/assets/bg-coelho.png)",
+        "url(../static/assets/bg-jack.png)",
+        "url(../static/assets/bg-santa.png)",
+        "url(../static/assets/bg-breu.png)",
+        "url(../static/assets/bg-sandy.png)"
+    ]
+
+    swiper.on('slideChange', () => {
+        const fundo = document.getElementById("fundo")
+       
+        fundo.style.backgroundImage = fundos[swiper.realIndex]
+        fundo.style.backgroundSize = "cover"
+        fundo.style.backgroundAttachment = "fixed"
+        fundo.style.backgroundPosition = "center"
+        fundo.style.backgroundRepeat = "no-repeat"
+        fundo.style.transition = "background-image 0.5s ease-in-out"
+    })
+
+    </script>
+</body>
+</html>

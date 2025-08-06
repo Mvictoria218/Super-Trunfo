@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+    --fonte-titulo: 'League Gothic', sans-serif;
+
+}
+
+body {
+    background-color: #27231d;
+    margin: 0;
+    padding: 0;
+}
+
+.bg{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+img{
+    width: 75%;
+    position: fixed;
+    right: 570px;
+    bottom: -95px;
+}
+
+h1{
+    font-family: var(--fonte-titulo);
+    color: #aea294;
+    font-size: 70px;
+    margin-top: 20px;
+}
+
+.a{
+    position: fixed;
+    left: 14%;
+    top: 90px;
+    font-size: 580%;
+}
+
+.b{
+    position: fixed;
+    left: 31%;
+    top: 114px;
+    font-size: 580%;
+}
+
+.play{
+    font-family: var(--fonte-titulo);
+    color: #aea294;
+    position: fixed;
+    top: 42%;
+    left: 1100px;
+    font-size: 500%;
+    text-decoration: none;
+}
+
+.como{
+    font-family: var(--fonte-titulo);
+    color: #aea294;
+    position: fixed;
+    top: 60%;
+    left: 1100px;
+    font-size: 400%;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+.como::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* espaço abaixo do texto */
+    width: 0;
+    height: 5px;
+    background-color: #aea294c7;
+    transition: width 0.3s ease-in-out
+}
+
+.como:hover::after {
+    width: 100%;
+  }
+
+
+.cartas{
+    font-family: var(--fonte-titulo);
+    color: #aea294;
+    position: fixed;
+    top: 73%;
+    left: 1100px;
+    font-size: 400%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cartas::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* espaço abaixo do texto */
+    width: 0;
+    height: 5px;
+    background-color: #aea294c7;
+    transition: width 0.3s ease-in-out
+}
+.cartas:hover::after {
+    width: 100%;
+  }
+
+.globo{
+    width: 5%;
+    position: fixed;
+    top: 44%;
+    right: 443px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.globo2{
+    width: 5%;
+    position: fixed;
+    top: 60%;
+    right: 443px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.globo3{
+    width: 5%;
+    position: fixed;
+    top: 74%;
+    right: 443px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
