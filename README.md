@@ -6,3 +6,5 @@
 O jogo simula uma partida do jogo Super Trunfo, no qual cada carta representa um personagem com atributos e valores para esses atributos, o objetivo do jogo é o jogador vencer a máquina escolhendo um atributo (ataque, magia e defesa) da carta sorteada para ser comparado com o valor do mesmo atributo da carta da máquina, vence a partida quem tiver o maior valor do atributo.
 
 ## Cartas ❄
+Cada carta é apresentada numa página, apresentando os personagens e seus atributos.
+
